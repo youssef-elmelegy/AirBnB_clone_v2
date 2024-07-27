@@ -4,6 +4,7 @@ Routes:
     /: Displays 'Hello HBNB!'.
     /hbnb: Displays 'HBNB'.
     /c/<text>: Displays 'C' followed by the value of <text>.
+    /python/(<text>): Displays 'Python' followed by the value of <text>.
 """
 from flask import Flask
 
@@ -24,18 +25,22 @@ def hbnb():
 
 @app.route("/c/<text>", strict_slashes=False)
 def c(text):
-    """ display “C ” followed by the value of the text variable"""
+    """
+    Displays 'C' followed by the value of <text>.
+    """
     text = text.replace("_", " ")
     return f"C {text}"
+
 
 @app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def python(text="is cool"):
     """
-    display “Python ”, followed by the value of the text variable
-    The default value of text is “is cool”"""
+    Displays 'Python' followed by the value of <text>.
+    """
     text = text.replace("_", " ")
     return "Python {}".format(text)
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0")
